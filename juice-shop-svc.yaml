@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: juice-shop-entrypoint
+  namespace: juice-shop
+spec:
+  type: ClusterIP  
+  #clusterIP: 10.107.57.210
+  selector:
+    app: juice-shop
+  ports:
+  - port: 80
+    name: http
+    targetPort: 3000

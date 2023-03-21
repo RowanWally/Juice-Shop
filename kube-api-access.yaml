@@ -1,0 +1,21 @@
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: kube-api-access
+spec:
+  podSelector: 
+    matchLabels:
+      component: kube-apiserver
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - ipBlock:
+        #cidr: 192.168.0.0/24
+        cidr: 192.168.0.63/32
+    - ipBlock:
+        cidr: 10.244.0.0/24
+    ports:
+    - protocol: TCP
+      port: 6443
+
